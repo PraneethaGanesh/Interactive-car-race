@@ -7,13 +7,14 @@ class Car:
         self.wheel_model = wheel_model
         self.fuel = 100  # Starting fuel level
         self.levels = {
-            "mud": {"max_laps": 6, "fuel_consumption": 10},
-            "thar": {"max_laps": 8, "fuel_consumption": 8},
-            "snow": {"max_laps": 10, "fuel_consumption": 10},
-            "f1": {"max_laps": 12, "fuel_consumption": 12}
+            "mud": {"max_laps": 6, "fuel_consumption": 10, "lap_distance": 1.5},
+            "thar": {"max_laps": 8, "fuel_consumption": 8, "lap_distance": 2.0},
+            "snow": {"max_laps": 10, "fuel_consumption": 10, "lap_distance": 2.5},
+            "f1": {"max_laps": 12, "fuel_consumption": 12, "lap_distance": 3.0}
         }
         self.score = 0
         self.coin = 0
+        self.total_distance = 0       # initial total distance traveled
         self.car_color = None
 
     def select_color(self):
@@ -29,10 +30,12 @@ class Car:
             max_laps = self.levels[track_name]["max_laps"]
             fuel_consumption = self.levels[track_name]["fuel_consumption"]
             self.run_race(track_name, max_laps, fuel_consumption)
+            lap_distance = self.levels[track_name]["lap_distance"]
+            self.run_race(track_name, max_laps, fuel_consumption, lap_distance)
         else:
             print("Invalid track selection.")
 
-    def run_race(self, track_name, max_laps, fuel_consumption):
+    def run_race(self, track_name, max_laps, fuel_consumption, lap_distance):
         laps_completed = 0
         while True:
             laps = int(input("Enter the number of laps you want to race: "))
@@ -43,6 +46,7 @@ class Car:
                     self.handle_random_event()  
                     print(f"Lap {lap} completed")
                     laps_completed += 1
+                    self.total_distance += lap_distance            # Updating total distance traveled
                 self.score += laps_completed * 100  
                 self.coin += laps_completed * 10  
                 print("You Won! Race completed")
