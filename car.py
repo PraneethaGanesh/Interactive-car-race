@@ -35,7 +35,13 @@ class Car:
     def run_race(self, track_name, max_laps, fuel_consumption):
         laps_completed = 0
         while True:
-            laps = int(input("Enter the number of laps you want to race: "))
+           laps = input("Enter the number of laps you want to race (or type 'quit' to exit): ").strip().lower()
+            if laps == 'quit':
+                print("You chose to quit the race.")
+                break  
+                if not laps.isdigit():
+                    print("Please enter a valid number of laps or type 'quit' to exit.")
+                    continue
             if laps <= max_laps:
                 for lap in range(1, laps + 1):
                     print(f"Lap {lap} started...")
