@@ -7,7 +7,7 @@ def car_race():
     total_coins = 0
 
     while True:
-        model = input(f"Enter your car model from {car_models}: ").lower()
+        model = input(f"Enter your car model from {car_models}: ")
         if model in car_models:
             wheel_model = input(f"Enter your car wheel model from {car_wheels}: ").lower().strip()
             if wheel_model in car_wheels:
