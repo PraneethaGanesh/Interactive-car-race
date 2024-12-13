@@ -5,6 +5,7 @@ def car_race():
     car_wheels = ["slick tires", "grooved tires", "soft compound tires", "hard compound tires", "studded tires"]  # Car wheels for selection
     total_score = 0
     total_coins = 0
+    total_distance = 0       #total distance traveled
 
     while True:
         model = input(f"Enter your car model from {car_models}: ").lower()
@@ -33,15 +34,18 @@ def car_race():
                 break
 
             total_score += car.score  
-            total_coins += car.coin  
+            total_coins += car.coin 
+            total_distance += car.total_distance    # Updating total distance travelled
 
             print(f"Your total score : {total_score}")
             print(f"Your total number of coins collected : {total_coins}")
+            print(f"Your total distance traveled : {total_distance} km")     # Displaying total distance travelled
 
             user_continue = input("Would you like to continue? (Yes/No): ").strip().lower()
             if user_continue == "no":
                 print(f"Your final total score is: {total_score}")
                 print(f"Your final total number of coins collected is: {total_coins}")
+                print(f"Your final total distance traveled is: {total_distance} km")          # Displaying final total distance
                 break
         elif user_input == 'no':
             print("====Exiting the game.====")
